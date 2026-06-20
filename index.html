@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Srivattsa R - Developer & Designer</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* Colors */
+      --bg-primary: #0a0a0a;
+      --surface: #111111;
+      --text: #e8e8e8;
+      --text-muted: #888888;
+      --accent: #ffffff;
+      --accent-dim: #ffffff1a;
+      --status-green: #22c55e;
+      
+      /* Typography */
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --base-size: 16px;
+      
+      /* Spacing */
+      --section-spacing: 4rem;
+      --gap-sm: 1rem;
+      --gap-md: 2rem;
+      --gap-lg: 3rem;
+      
+      /* Borders */
+      --border-light: 1px solid var(--accent-dim);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: var(--base-size);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-primary);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.5rem; }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--gap-md);
+    }
+
+    /* Nav */
+    .nav {
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--accent-dim);
+      z-index: 100;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 1.375rem;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 6rem 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .role {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero .tagline {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      color: var(--text-muted);
+    }
+
+    .hero .status-pills {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.375rem 0.875rem;
+      background-color: var(--surface);
+      border: var(--border-light);
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    /* Section headings */
+    section {
+      padding: var(--section-spacing) 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: var(--gap-lg);
+    }
+
+    .section-heading h2 {
+      font-size: 2rem;
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: var(--gap-lg);
+      align-items: start;
+    }
+
+    .about-content {
+      flex: 1;
+    }
+
+    .about-content p {
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+    }
+
+    .about-stats {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-md);
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: var(--gap-md);
+      background-color: var(--surface);
+      border: var(--border-light);
+      border-radius: 12px;
+    }
+
+    .stat-number {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    /* Stack */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap-lg);
+      margin-top: var(--gap-lg);
+    }
+
+    .stack-category {
+      background-color: var(--surface);
+      border: var(--border-light);
+      border-radius: 12px;
+      padding: var(--gap-md);
+    }
+
+    .stack-category h3 {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: var(--gap-sm);
+      text-align: center;
+    }
+
+    .stack-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .stack-badge {
+      padding: 0.375rem 0.75rem;
+      background-color: var(--bg-primary);
+      border: var(--border-light);
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--gap-lg);
+    }
+
+    .project-card {
+      background-color: var(--surface);
+      border: var(--border-light);
+      border-radius: 12px;
+      padding: var(--gap-md);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .project-card:hover {
+      border-color: var(--text);
+    }
+
+    .project-card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.125rem;
+    }
+
+    .project-card p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    /* Contact */
+    .contact {
+      text-align: center;
+      padding: 4rem 0;
+    }
+
+    .contact h2 {
+      margin-bottom: 2rem;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      background-color: var(--surface);
+      border: var(--border-light);
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      transition: border-color 0.2s ease;
+    }
+
+    .contact-link:hover {
+      border-color: var(--text);
+      color: var(--text);
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem 0;
+      border-top: 1px solid var(--accent-dim);
+      text-align: center;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 0.5rem;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero {
+        padding: 3rem 0;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero .tagline {
+        font-size: 0.9375rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: var(--gap-md);
+      }
+
+      .about-stats {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .stack-grid {
+        grid-template-columns: 1fr;
+        gap: var(--gap-md);
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: var(--gap-md);
+      }
+
+      .section-heading h2 {
+        font-size: 1.5rem;
+      }
+
+      .contact-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .contact-link {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="container nav-container">
+      <a href="#hero" class="nav-logo">Srivattsa R</a>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#stack">Stack</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero" class="hero">
+    <div class="container">
+      <h1>Developer & Designer</h1>
+      <p class="role">Crafting design, website, and Framer. I build things that are inspiring.</p>
+      <div class="status-pills">
+        <span class="pill">📍 Chennai, India</span>
+        <span class="pill">🟢 Available</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="section-heading">
+        <h2>About</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-content">
+          <h3>From chaos to clean UI/UX</h3>
+          <p>I'm Srivattsa, a 2nd year Computer Science student at SRM KTR. My work sits at creating clean UI and distributed systems. I believe in learning by rebuilding. Most of my projects are explorations and inspiration.</p>
+          <div class="focus-pills">
+            <span class="pill">Web Design</span>
+            <span class="pill">Framer</span>
+            <span class="pill">Distributed Systems</span>
+            <span class="pill">Web Dev</span>
+            <span class="pill">App Dev</span>
+            <span class="pill">WebAssembly</span>
+          </div>
+        </div>
+        <div class="about-stats">
+          <div class="stat-item">
+            <span class="stat-number">15</span>
+            <span class="stat-label">Repositories</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">212</span>
+            <span class="stat-label">Contributions</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">3+</span>
+            <span class="stat-label">Years</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stack -->
+  <section id="stack" class="stack">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Stack</h2>
+      </div>
+      <div class="stack-grid">
+        <div class="stack-category">
+          <h3>Languages</h3>
+          <div class="stack-items">
+            <span class="stack-badge">Python</span>
+            <span class="stack-badge">Java</span>
+            <span class="stack-badge">C/C++</span>
+            <span class="stack-badge">TypeScript</span>
+            <span class="stack-badge">JavaScript</span>
+          </div>
+        </div>
+        <div class="stack-category">
+          <h3>Systems & Technologies</h3>
+          <div class="stack-items">
+            <span class="stack-badge">Svelte JS</span>
+            <span class="stack-badge">PostgreSQL</span>
+            <span class="stack-badge">Valkey</span>
+            <span class="stack-badge">Next JS</span>
+            <span class="stack-badge">Bun</span>
+            <span class="stack-badge">Hono JS</span>
+            <span class="stack-badge">Node JS</span>
+          </div>
+        </div>
+        <div class="stack-category">
+          <h3>Environment</h3>
+          <div class="stack-items">
+            <span class="stack-badge">Git</span>
+            <span class="stack-badge">Linux</span>
+            <span class="stack-badge">Docker</span>
+            <span class="stack-badge">VSCode</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="projects">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Projects</h2>
+      </div>
+      <div class="projects-grid">
+        <article class="project-card">
+          <h3>CampusTix</h3>
+          <p>A comprehensive web application built with React focusing on modern UI patterns and interactive components.</p>
+          <div class="project-tags">
+            <span class="stack-badge">React</span>
+            <span class="stack-badge">UI</span>
+          </div>
+        </article>
+        <article class="project-card">
+          <h3>Lead Automation Chatbot</h3>
+          <p>An NLP-powered application exploring natural language processing and text classification algorithms.</p>
+          <div class="project-tags">
+            <span class="stack-badge">Python</span>
+            <span class="stack-badge">NLP</span>
+          </div>
+        </article>
+        <article class="project-card">
+          <h3>Gradient Lab</h3>
+          <p>A modern, interactive color gradient generator with real-time preview, customizable
+stops, and one-click CSS/SVG export.</p>
+          <div class="project-tags">
+            <span class="stack-badge">Svelte JS</span>
+            <span class="stack-badge">Web Design</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Let's work together</h2>
+      <div class="contact-links">
+        <a href="https://github.com/Vattsa-11" class="contact-link" target="_blank" rel="noopener noreferrer">
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/srivattsa" class="contact-link" target="_blank" rel="noopener noreferrer">
+          LinkedIn
+        </a>
+        <a href="https://instagram.com/v_a_t_t_s_a_11" class="contact-link" target="_blank" rel="noopener noreferrer">
+          Instagram
+        </a>
+        <a href="mailto:srisu0306@gmail.com" class="contact-link">
+          Email
+        </a>
+        <a href="https://vattsa-portfolio.vercel.app" class="contact-link" target="_blank" rel="noopener noreferrer">
+          Portfolio
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Srivattsa R</p>
+    </div>
+  </footer>
+</body>
+</html>
